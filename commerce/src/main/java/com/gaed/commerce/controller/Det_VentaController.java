@@ -3,14 +3,13 @@ package com.gaed.commerce.controller;
 import com.gaed.commerce.pojo.Det_VentaPojo;
 import com.gaed.commerce.repository.DetVentaRep;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/detalleventa")
 public class Det_VentaController {
     private final DetVentaRep detVentaRep;

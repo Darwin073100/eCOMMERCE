@@ -3,14 +3,13 @@ package com.gaed.commerce.controller;
 import com.gaed.commerce.pojo.VentaPojo;
 import com.gaed.commerce.repository.VentaRep;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/venta")
 public class VentaController {
     private final VentaRep ventaRep;

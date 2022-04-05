@@ -11,7 +11,9 @@ public class ReunionPojo {
     private String Descripcion;
     private String Fecha;
     private String Hora;
+    @Column(name = "Id_Cli")
     private int IdCli;
+    @Column(name = "Nombre_Cli")
     private String NombreCli;
     private String Tipo;
 

@@ -8,8 +8,11 @@ public class Det_VentaPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+    @Column(name = "Id_VENT")
     private int IdVENT;
+    @Column(name = "Id_PROD")
     private String IdPROD;
+    @Column(name = "Nombre_Prod")
     private String NombreProd;
     private double Precio;
     private double Descuento;

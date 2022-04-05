@@ -8,7 +8,9 @@ public class UsuarioPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+    @Column(name = "User_Name")
     private String UserName;
+    @Column(name = "User_Password")
     private String UserPassword;
 
     public UsuarioPojo() {

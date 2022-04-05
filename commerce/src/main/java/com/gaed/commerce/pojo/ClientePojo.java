@@ -10,11 +10,15 @@ public class ClientePojo {
     private int Id;
     private String Nombre;
     private String Apellidos;
+    @Column(name = "Email")
     private String eMail;
+    @Column(name = "Clave_Pais")
     private String ClavePais;
     private String Telefono;
+    @Column(name = "No_Compras")
     private int NoCompras;
     private String Direccion;
+    @Column(name = "Id_User")
     private int IdUser;
 
     public ClientePojo() {

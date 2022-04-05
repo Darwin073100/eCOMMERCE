@@ -1,81 +1,98 @@
 CREATE DATABASE GAED;
 USE GAED;
 
-CREATE TABLE PRODUCTO(
-Id varchar(10) primary key not null,
-Nombre varchar(100) not null,
-Tipo varchar(50)not null,
-Estado varchar(50)null,
-Precio numeric not null,
-Consumo int not null,    
-Fecha date null,
-Descripcion text null,
-Version varchar(10) not null
+CREATE TABLE producto (
+    Id VARCHAR(10) PRIMARY KEY NOT NULL,
+    Nombre VARCHAR(100) NOT NULL,
+    Tipo VARCHAR(50) NOT NULL,
+    Estado VARCHAR(50) NULL,
+    Imagen VARCHAR(50) NULL,
+    Precio DOUBLE NOT NULL,
+    Consumo INT NOT NULL,
+    Fecha VARCHAR(50) NULL,
+    Descripcion TEXT NULL,
+    Version VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE USUARIO(
-Id int AUTO_INCREMENT primary key not null,
-UserName varchar(50)null,
-UserPassword varchar(10)not null
+insert into producto values('1','Sitio web','pagina web','terminado',null,33.3,9,'12-02-2022','rv','v1');
+DELETE FROM producto 
+WHERE
+    (id = '');
+SELECT 
+    *
+FROM
+    producto;
+
+CREATE TABLE usuario (
+    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    User_Name VARCHAR(50) NULL,
+    User_Password VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE CLIENTE(
-Id int AUTO_INCREMENT PRIMARY KEY not null,
-Nombre varchar(50) not null,
-Apellidos varchar(100) not null,
-eMail text not null,
-ClavePais varchar(5) not null,
-Telefono varchar(50) not null,
-NoCompras int not null,
-Direccion text not null,
-IdUser int  not null,
-CONSTRAINT fk_iduser_cli foreign key (IdUser) references USUARIO(Id)
+CREATE TABLE cliente (
+    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Nombre VARCHAR(50) NOT NULL,
+    Apellidos VARCHAR(100) NOT NULL,
+    Email TEXT NOT NULL,
+    Clave_Pais VARCHAR(5) NOT NULL,
+    Telefono VARCHAR(50) NOT NULL,
+    No_Compras INT NOT NULL,
+    Direccion TEXT NOT NULL,
+    Id_User INT NOT NULL,
+    CONSTRAINT fk_iduser_cli FOREIGN KEY (Id_User)
+        REFERENCES usuario(Id)
 );
 
-CREATE TABLE TRABAJADOR(
-Id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-Nombre varchar(50) not null,
-Apellidos varchar(100) not null,
-Telefono varchar(50),
-eMail text not null,
-IdUser int not null,
-CONSTRAINT fk_iduser_trab foreign key (IdUser) references USUARIO(Id)
+CREATE TABLE trabajador(
+    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Nombre VARCHAR(50) NOT NULL,
+    Apellidos VARCHAR(100) NOT NULL,
+    Telefono VARCHAR(50),
+    Email TEXT NOT NULL,
+    Id_User INT NOT NULL,
+    CONSTRAINT fk_iduser_trab FOREIGN KEY (Id_User)
+        REFERENCES usuario (Id)
 );
 
-CREATE TABLE REUNION(
-Id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-Descripcion text not null,
-Fecha date,
-Hora Time,
-IdCli int not null,
-NombreCli varchar(150) not null,
-Tipo varchar(50) null,
-CONSTRAINT fk_idcli_reu foreign key (IdCli) references CLIENTE(Id)
+CREATE TABLE reunion (
+    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Descripcion TEXT NOT NULL,
+    Fecha VARCHAR(50),
+    Hora VARCHAR(20),
+    Id_Cli INT NOT NULL,
+    Nombre_Cli VARCHAR(150) NOT NULL,
+    Tipo VARCHAR(50) NULL,
+    CONSTRAINT fk_idcli_reu FOREIGN KEY (Id_Cli)
+        REFERENCES cliente (Id)
 );
 
-CREATE TABLE VENTA(
-Id int auto_increment primary key not null,
-IdCLI int not null,
-NombreCli varchar(150) not null,
-DireccionCli text not null,
-Total numeric not null,
-Fecha datetime null,
-IdTRAB int null,
-NombreTrab varchar(150) null,
-CONSTRAINT fk_idcli_ven foreign key (IdCli) references CLIENTE(Id),
-CONSTRAINT fk_idtrab_ven foreign key (IdTrab) references TRABAJADOR(Id)
+CREATE TABLE venta (
+    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Id_CLI INT NOT NULL,
+    Nombre_Cli VARCHAR(150) NOT NULL,
+    Direccion_Cli TEXT NOT NULL,
+    Total DOUBLE NOT NULL,
+    Fecha TEXT NULL,
+    Id_TRAB INT NULL,
+    Nombre_Trab VARCHAR(150) NULL,
+    CONSTRAINT fk_idcli_ven FOREIGN KEY (Id_Cli)
+        REFERENCES cliente (Id),
+    CONSTRAINT fk_idtrab_ven FOREIGN KEY (Id_Trab)
+        REFERENCES trabajador (Id)
 );
 
-CREATE TABLE DET_VENTA(
-Id int auto_increment primary key not null,
-IdVENT int not null,
-IdPROD VARCHAR(10) not null,
-NombreProd varchar(100) not null,
-Precio numeric not null,
-descuento numeric null,
-Fecha datetime null,
-CONSTRAINT fk_idprod_dvent foreign key (IdPROD) references PRODUCTO(Id),
-CONSTRAINT fk_idven_dven foreign key (IdVENT) references VENTA(Id)
+CREATE TABLE det_venta (
+    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Id_VENT INT NOT NULL,
+    Id_PROD VARCHAR(10) NOT NULL,
+    Nombre_Prod VARCHAR(100) NOT NULL,
+    Precio DOUBLE NOT NULL,
+    Descuento DOUBLE NULL,
+    Fecha TEXT NULL,
+    CONSTRAINT fk_idprod_dvent FOREIGN KEY (Id_PROD)
+        REFERENCES producto (Id),
+    CONSTRAINT fk_idven_dven FOREIGN KEY (Id_VENT)
+        REFERENCES venta (Id)
 );
 
 

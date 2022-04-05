@@ -11,7 +11,9 @@ public class TrabajadorPojo {
     private String Nombre;
     private String Apellidos;
     private String Telefono;
+    @Column(name = "Email")
     private String eMail;
+    @Column(name = "Id_User")
     private int IdUser;
 
     public TrabajadorPojo() {

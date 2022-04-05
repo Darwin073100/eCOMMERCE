@@ -8,12 +8,17 @@ public class VentaPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+    @Column(name = "Id_Cli")
     private int IdCli;
+    @Column(name = "Nombre_Cli")
     private String NombreCli;
+    @Column(name = "Direccion_Cli")
     private String DireccionCli;
     private double Total;
     private String Fecha;
+    @Column(name = "Id_TRAB")
     private int IdTRAB;
+    @Column(name = "Nombre_Trab")
     private String NombreTrab;
 
     public VentaPojo() {

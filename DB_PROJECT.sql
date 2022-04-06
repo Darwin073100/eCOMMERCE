@@ -15,6 +15,7 @@ CREATE TABLE producto (
 );
 
 insert into producto values('1','Sitio web','pagina web','terminado',null,33.3,9,'12-02-2022','rv','v1');
+insert into producto values('2','ADMIN PRO','Sistema de informacion','terminado',null,333.3,9,'07-02-2022','Este sistema es utilizaco para administrar una tiena local','v1');
 DELETE FROM producto 
 WHERE
     (id = '');

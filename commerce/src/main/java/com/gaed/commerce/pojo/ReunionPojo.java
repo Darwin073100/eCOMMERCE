@@ -1,6 +1,7 @@
 package com.gaed.commerce.pojo;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "REUNION")
@@ -16,6 +17,10 @@ public class ReunionPojo {
     @Column(name = "Nombre_Cli")
     private String NombreCli;
     private String Tipo;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_Cli", insertable = false, updatable = false)
+    private ClientePojo clientePojo;
 
     public ReunionPojo() {
 

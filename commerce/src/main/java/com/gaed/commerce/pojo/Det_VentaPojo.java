@@ -1,6 +1,7 @@
 package com.gaed.commerce.pojo;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "DET_VENTA")
@@ -17,6 +18,14 @@ public class Det_VentaPojo {
     private double Precio;
     private double Descuento;
     private String Fecha;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_PROD",insertable = false, updatable = false)
+    private ProductoPojo productoPojo;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_VENT",insertable = false, updatable = false)
+    private VentaPojo ventaPojo;
 
     public Det_VentaPojo() {
 

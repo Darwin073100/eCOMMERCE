@@ -30,8 +30,10 @@ CREATE TABLE usuario (
     User_Password VARCHAR(10) NOT NULL
 );
 
+insert into usuario values(1,'edwin','edwin123');
+
 CREATE TABLE cliente (
-    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Id INT  PRIMARY KEY NOT NULL,
     Nombre VARCHAR(50) NOT NULL,
     Apellidos VARCHAR(100) NOT NULL,
     Email TEXT NOT NULL,
@@ -45,7 +47,7 @@ CREATE TABLE cliente (
 );
 
 CREATE TABLE trabajador(
-    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Id INT  PRIMARY KEY NOT NULL,
     Nombre VARCHAR(50) NOT NULL,
     Apellidos VARCHAR(100) NOT NULL,
     Telefono VARCHAR(50),
@@ -56,7 +58,7 @@ CREATE TABLE trabajador(
 );
 
 CREATE TABLE reunion (
-    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Id INT  PRIMARY KEY NOT NULL,
     Descripcion TEXT NOT NULL,
     Fecha VARCHAR(50),
     Hora VARCHAR(20),
@@ -68,7 +70,7 @@ CREATE TABLE reunion (
 );
 
 CREATE TABLE venta (
-    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Id INT  PRIMARY KEY NOT NULL,
     Id_CLI INT NOT NULL,
     Nombre_Cli VARCHAR(150) NOT NULL,
     Direccion_Cli TEXT NOT NULL,
@@ -83,16 +85,16 @@ CREATE TABLE venta (
 );
 
 CREATE TABLE det_venta (
-    Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    Id_VENT INT NOT NULL,
-    Id_PROD VARCHAR(10) NOT NULL,
+    Id INT  PRIMARY KEY NOT NULL,
+    Id_Vent INT NOT NULL,
+    Id_Prod VARCHAR(10) NOT NULL,
     Nombre_Prod VARCHAR(100) NOT NULL,
     Precio DOUBLE NOT NULL,
     Descuento DOUBLE NULL,
     Fecha TEXT NULL,
-    CONSTRAINT fk_idprod_dvent FOREIGN KEY (Id_PROD)
+    CONSTRAINT fk_idprod_dvent FOREIGN KEY (Id_Prod)
         REFERENCES producto (Id),
-    CONSTRAINT fk_idven_dven FOREIGN KEY (Id_VENT)
+    CONSTRAINT fk_idven_dven FOREIGN KEY (Id_Vent)
         REFERENCES venta (Id)
 );
 

@@ -1,6 +1,7 @@
 package com.gaed.commerce.pojo;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "PRODUCTO")
@@ -17,6 +18,9 @@ public class ProductoPojo {
     private String Fecha;
     private String Descripcion;
     private String Version;
+
+    @OneToMany(mappedBy = "productoPojo")
+    private List<Det_VentaPojo> det_ventaPojo;
 
     public ProductoPojo() {
 

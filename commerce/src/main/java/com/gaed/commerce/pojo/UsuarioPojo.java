@@ -13,6 +13,12 @@ public class UsuarioPojo {
     @Column(name = "User_Password")
     private String UserPassword;
 
+    @OneToOne(mappedBy = "usuarioPojo")
+    private TrabajadorPojo trabajadorPojo;
+
+    @OneToOne(mappedBy = "usuarioPojo")
+    private ClientePojo clientePojo;
+
     public UsuarioPojo() {
 
     }

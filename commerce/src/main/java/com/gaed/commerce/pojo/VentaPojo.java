@@ -1,6 +1,9 @@
 package com.gaed.commerce.pojo;
 
+import org.hibernate.annotations.ManyToAny;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "VENTA")
@@ -20,6 +23,17 @@ public class VentaPojo {
     private int IdTRAB;
     @Column(name = "Nombre_Trab")
     private String NombreTrab;
+
+    @OneToMany(mappedBy = "ventaPojo")
+    private List<Det_VentaPojo> det_ventaPojo;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_Cli", insertable = false, updatable = false)
+    private ClientePojo clientePojo;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_TRAB", insertable = false, updatable = false)
+    private TrabajadorPojo trabajadorPojo;
 
     public VentaPojo() {
 

@@ -31,7 +31,7 @@ CREATE TABLE usuario (
 );
 
 insert into usuario values(1,'edwin','edwin123');
-
+select * from usuario;
 CREATE TABLE cliente (
     Id INT  PRIMARY KEY NOT NULL,
     Nombre VARCHAR(50) NOT NULL,

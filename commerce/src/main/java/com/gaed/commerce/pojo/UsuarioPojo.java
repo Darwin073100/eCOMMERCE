@@ -8,6 +8,8 @@ public class UsuarioPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+    @Column(name = "Tipo")
+    private String Tipo;
     @Column(name = "User_Name")
     private String UserName;
     @Column(name = "User_Password")
@@ -23,8 +25,9 @@ public class UsuarioPojo {
 
     }
 
-    public UsuarioPojo(int id, String userName, String userPassword) {
+    public UsuarioPojo(int id, String tipo, String userName, String userPassword) {
         this.Id = id;
+        this.Tipo = tipo;
         this.UserName = userName;
         this.UserPassword = userPassword;
     }
@@ -35,6 +38,13 @@ public class UsuarioPojo {
 
     public void setId(int id) {
         Id = id;
+    }
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(String tipo) {
+        Tipo = tipo;
     }
 
     public String getUserName() {

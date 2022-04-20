@@ -2,49 +2,62 @@ package com.gaed.commerce.controller;
 
 import com.gaed.commerce.pojo.ProductoPojo;
 import com.gaed.commerce.repository.ProductoRep;
-import com.gaed.commerce.service.ProductoServ;
-import com.gaed.commerce.util.CustomErrorType;
-import org.hibernate.type.CustomType;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/producto")
 public class ProductoController {
     private final ProductoRep productoRep;
-
+    private final String PATH_IMG = "images/producto/";
     public ProductoController(ProductoRep productoRep) {
         this.productoRep = productoRep;
     }
     //----------------------IMAGENES------------------------------
-    @PostMapping("/subir")
+    @PostMapping("/image/up")
     public String upLoadImagen(@RequestParam("Id") String Id,
        @RequestParam("file")MultipartFile file) throws IOException {
-        System.out.println(file.getOriginalFilename());
-        System.out.println(file.getName()+ Id);
-        System.out.println(file.getContentType());
-        System.out.println(file.getSize());
+        System.out.print("Llamada a upLoadImage");
 
-        String PATH = "images/producto/";
         String fileName = Id+"-Product."+file.getContentType().split("/")[1];
+        Files.copy(file.getInputStream(),Paths.get(PATH_IMG+fileName),StandardCopyOption.REPLACE_EXISTING);
+        return "Imagen cargada con exito en: "+ PATH_IMG+fileName;
+    }
 
-        Files.copy(file.getInputStream(),Paths.get(PATH+fileName),StandardCopyOption.REPLACE_EXISTING);
-        return "Imagen subida con exito"+Id;
+    @GetMapping(value = "/image/{id}",produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public  byte[] getImg(@PathVariable String id) throws IOException {
+        File file = new File(PATH_IMG+id+"-Product.png");
+        FileInputStream inputStream = new FileInputStream(file);
+        byte[] bytes = new byte[inputStream.available()];
+        inputStream.read(bytes, 0, inputStream.available());
+        return bytes;
+    }
+    @DeleteMapping("/image/{id}")
+    public String deleteImg(@PathVariable String id){
+        String mensaje="";
+        File file = new File(PATH_IMG+id+"-Product.png");
+        if (file.exists()){
+            file.delete();
+            mensaje= "Imagen eliminada con exito";
+        } else{
+            mensaje = "La imagen con id: "+ id + " no existe.";
+        }
+        return mensaje;
     }
     //----------------------FIN-IMAGENES------------------------------
     @GetMapping

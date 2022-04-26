@@ -1,7 +1,5 @@
 package com.gaed.commerce.pojo;
 
-import org.hibernate.annotations.ManyToAny;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,7 +7,7 @@ import java.util.List;
 @Table(name = "VENTA")
 public class VentaPojo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
     @Column(name = "Id_Cli")
     private int IdCli;

@@ -12,7 +12,6 @@ public class ProductoPojo {
     private String Nombre;
     private String Tipo;
     private String Estado;
-    private String Imagen;
     private double Precio;
     private int Consumo;
     private String Fecha;
@@ -22,16 +21,18 @@ public class ProductoPojo {
     @OneToMany(mappedBy = "productoPojo")
     private List<Det_VentaPojo> det_ventaPojo;
 
+    @OneToMany(mappedBy = "productoPojo")
+    private List<Img_ProductoEntity> img_productoEntities;
+
     public ProductoPojo() {
 
     }
 
-    public ProductoPojo(String id, String nombre, String tipo, String estado, String imagen, double precio, int consumo, String fecha, String descripcion, String version) {
+    public ProductoPojo(String id, String nombre, String tipo, String estado, double precio, int consumo, String fecha, String descripcion, String version) {
         this.Id = id;
         this.Nombre = nombre;
         this.Tipo = tipo;
         this.Estado = estado;
-        this.Imagen = imagen;
         this.Precio = precio;
         this.Consumo = consumo;
         this.Fecha = fecha;
@@ -111,11 +112,4 @@ public class ProductoPojo {
         Version = version;
     }
 
-    public String getImagen() {
-        return Imagen;
-    }
-
-    public void setImagen(String imagen) {
-        Imagen = imagen;
-    }
 }

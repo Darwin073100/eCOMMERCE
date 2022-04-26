@@ -23,43 +23,10 @@ import java.util.Optional;
 @RequestMapping("/producto")
 public class ProductoController {
     private final ProductoRep productoRep;
-    private final String PATH_IMG = "images/producto/";
     public ProductoController(ProductoRep productoRep) {
         this.productoRep = productoRep;
     }
-    //----------------------IMAGENES------------------------------
-    @PostMapping("/image/up")
-    public String upLoadImagen(@RequestParam("Id") String Id,
-       @RequestParam("file")MultipartFile file) throws IOException {
-        System.out.print("Llamada a upLoadImage");
 
-        String fileName = Id+"-Product."+file.getContentType().split("/")[1];
-        Files.copy(file.getInputStream(),Paths.get(PATH_IMG+fileName),StandardCopyOption.REPLACE_EXISTING);
-        return "Imagen cargada con exito en: "+ PATH_IMG+fileName;
-    }
-
-    @GetMapping(value = "/image/{id}",produces = MediaType.IMAGE_JPEG_VALUE)
-    @ResponseBody
-    public  byte[] getImg(@PathVariable String id) throws IOException {
-        File file = new File(PATH_IMG+id+"-Product.png");
-        FileInputStream inputStream = new FileInputStream(file);
-        byte[] bytes = new byte[inputStream.available()];
-        inputStream.read(bytes, 0, inputStream.available());
-        return bytes;
-    }
-    @DeleteMapping("/image/{id}")
-    public String deleteImg(@PathVariable String id){
-        String mensaje="";
-        File file = new File(PATH_IMG+id+"-Product.png");
-        if (file.exists()){
-            file.delete();
-            mensaje= "Imagen eliminada con exito";
-        } else{
-            mensaje = "La imagen con id: "+ id + " no existe.";
-        }
-        return mensaje;
-    }
-    //----------------------FIN-IMAGENES------------------------------
     @GetMapping
     public List<ProductoPojo> getProductos(){
         System.out.print("Llamar a GetProductos");

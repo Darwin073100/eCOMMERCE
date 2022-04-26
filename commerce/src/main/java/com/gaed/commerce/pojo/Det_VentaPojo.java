@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "DET_VENTA")
 public class Det_VentaPojo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
     @Column(name = "Id_VENT")
     private int IdVENT;

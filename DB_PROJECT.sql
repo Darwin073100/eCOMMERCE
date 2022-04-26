@@ -14,24 +14,13 @@ CREATE TABLE producto (
     Version VARCHAR(10) NOT NULL
 );
 
-insert into producto values('1','Sitio web','pagina web','terminado',null,33.3,9,'12-02-2022','rv','v1');
-insert into producto values('2','ADMIN PRO','Sistema de informacion','terminado',null,333.3,9,'07-02-2022','Este sistema es utilizaco para administrar una tiena local','v1');
-DELETE FROM producto 
-WHERE
-    (id = '');
-SELECT 
-    *
-FROM
-    producto;
-
 CREATE TABLE usuario (
     Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     User_Name VARCHAR(50) NULL,
-    User_Password VARCHAR(10) NOT NULL
+    User_Password VARCHAR(10) NOT NULL,
+    Tipo varchar(50) NUll
 );
 
-insert into usuario values(1,'edwin','edwin123');
-select * from usuario;
 CREATE TABLE cliente (
     Id INT  PRIMARY KEY NOT NULL,
     Nombre VARCHAR(50) NOT NULL,
@@ -97,6 +86,4 @@ CREATE TABLE det_venta (
     CONSTRAINT fk_idven_dven FOREIGN KEY (Id_Vent)
         REFERENCES venta (Id)
 );
-
-
 

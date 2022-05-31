@@ -38,6 +38,10 @@ public class ProductoController {
         System.out.println("Llamada a GetProducto por ID "+id);
         return productoRep.findById(id).orElseThrow(RuntimeException::new);
     }
+    @GetMapping("tipo/{tipo}")
+    public List<ProductoPojo> getTipoProd(@PathVariable String tipo){
+        return productoRep.findByTipo(tipo);
+    }
 
     @PostMapping
     public ResponseEntity createProducto(@RequestBody ProductoPojo productoPojo) throws URISyntaxException {

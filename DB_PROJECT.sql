@@ -6,12 +6,19 @@ CREATE TABLE producto (
     Nombre VARCHAR(100) NOT NULL,
     Tipo VARCHAR(50) NOT NULL,
     Estado VARCHAR(50) NULL,
-    Imagen VARCHAR(50) NULL,
     Precio DOUBLE NOT NULL,
     Consumo INT NOT NULL,
     Fecha VARCHAR(50) NULL,
     Descripcion TEXT NULL,
     Version VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE img_producto (
+    Id varchar(10) PRIMARY KEY NOT NULL,
+    Imagen VARCHAR(50) NULL,
+    Id_Producto VARCHAR(10) NOT NULL,
+    CONSTRAINT fk_img_product FOREIGN KEY (Id_Producto)
+        REFERENCES producto(Id)
 );
 
 CREATE TABLE usuario (

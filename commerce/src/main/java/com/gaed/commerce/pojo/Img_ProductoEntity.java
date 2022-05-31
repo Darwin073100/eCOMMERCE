@@ -7,8 +7,7 @@ import javax.persistence.*;
 public class Img_ProductoEntity {
     @Id
     @Column(name = "Id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private String Id;
     @Column(name = "Imagen")
     private String Imagen;
     @Column(name = "Id_Producto")
@@ -21,17 +20,17 @@ public class Img_ProductoEntity {
     public Img_ProductoEntity() {
     }
 
-    public Img_ProductoEntity(int Id, String Imagen, String Idproducto){
+    public Img_ProductoEntity(String Id, String Imagen, String Idproducto){
         this.Id = Id;
         this.Imagen= Imagen;
         this.idproducto = Idproducto;
     }
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         Id = id;
     }
 
